@@ -73,9 +73,9 @@ jobs:
 
       - name: Get Kube config files
         id: getconfig
-        if: steps.apply.outcome == 'sucess'
+        if: steps.apply.outcome == 'success'
         run: aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.EKS_CLUSTER }}
 
       - name: Install ingress controller
-        if: steps.apply.outcome == 'sucess' && steps.getconfig.outcome == 'sucess'
+        if: steps.apply.outcome == 'success' && steps.getconfig.outcome == 'success'
         run: kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml 
